@@ -31,7 +31,7 @@ public class ProductEntity extends BaseEntity {
 	private BigDecimal igst;
 	@Lob
 	@Column(name = "image")
-	private String image;
+	private byte[] image;
 	public String getCode() {
 		return code;
 	}
@@ -86,12 +86,12 @@ public class ProductEntity extends BaseEntity {
 	public void setIgst(BigDecimal igst) {
 		this.igst = igst;
 	}
-	public String getImage() {
+
+	public byte[] getImage() {
 		return image;
 	}
-	public void setImage(String image) {
-		this.image = image;
-	}	
-	
 
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
 }

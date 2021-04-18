@@ -46,5 +46,7 @@ public abstract class AbstractCRUDService<T, S> {
         return crudRepository.findAll(paging);
     }
 
-
+    public Long count() {
+        return  crudRepository.count();
+    }
 }

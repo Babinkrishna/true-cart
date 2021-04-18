@@ -114,4 +114,16 @@ public abstract class AbstractCRUDController<T, S> {
         }
         return responseService.prepareFailedResponseWithMessage("",ApplicationConstants.FAILED);
     }
+
+
+    /**
+     * method to find all records without any restrictions
+     *
+     * @return
+     */
+    @GetMapping(value = "/count", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<String> count() {
+       Long count = abstractCRUDServiceImpl.count();
+        return responseService.prepareSuccessResponseWithMessage(count,"success");
+    }
 }
