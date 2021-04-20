@@ -3,10 +3,11 @@ package com.nit.web.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 
 @Entity
-@Table(name = "client")
-public class ClientEntity extends BaseEntity {
+@Table(name = "supplier")
+public class SupplierEntity extends BaseEntity {
 
 	@Column(name = "name")
 	private String name;
@@ -14,8 +15,12 @@ public class ClientEntity extends BaseEntity {
 	private String gstNumber;
 	@Column(name = "code")
 	private String code;
-	@Column(name = "auto_approve")
-	private String autoApprove;
+	@Column(name = "website")
+	private String website;
+	@Column(name = "contact_person")
+	private String contactPerson;
+	@Column(name = "opening_balance")
+	private BigDecimal openingBalance;
 	@Column(name = "address")
 	private String address;
 
@@ -43,12 +48,28 @@ public class ClientEntity extends BaseEntity {
 		this.code = code;
 	}
 
-	public String getAutoApprove() {
-		return autoApprove;
+	public String getWebsite() {
+		return website;
 	}
 
-	public void setAutoApprove(String autoApprove) {
-		this.autoApprove = autoApprove;
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
+	public String getContactPerson() {
+		return contactPerson;
+	}
+
+	public void setContactPerson(String contactPerson) {
+		this.contactPerson = contactPerson;
+	}
+
+	public BigDecimal getOpeningBalance() {
+		return openingBalance;
+	}
+
+	public void setOpeningBalance(BigDecimal openingBalance) {
+		this.openingBalance = openingBalance;
 	}
 
 	public String getAddress() {

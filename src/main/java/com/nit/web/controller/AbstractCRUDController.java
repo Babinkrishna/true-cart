@@ -103,6 +103,12 @@ public abstract class AbstractCRUDController<T, S> {
     @PostMapping(value = "/findallbypage", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
     ResponseEntity<String> findAllByPage(@RequestBody SearchModel searchModel) {
         PaginationResponseModel pageResponse = new PaginationResponseModel();
+        if(abstractCRUDServiceImpl.count()>0){
+
+
+        if(searchModel.getMaxResult() ==0){
+            searchModel.setMaxResult(Math.toIntExact(abstractCRUDServiceImpl.count()));
+        }
         Pageable paging = PageRequest.of(searchModel.getFirstResult(), searchModel.getMaxResult());
         List<T> tList = new ArrayList<>();
         Page<T> pagedResult = (Page<T>) abstractCRUDServiceImpl.findAllByPage(paging);
@@ -111,6 +117,7 @@ public abstract class AbstractCRUDController<T, S> {
             pageResponse.setItems(tList);
             pageResponse.setTotalCount(pagedResult.getTotalElements());
             return responseService.prepareSuccessResponseWithMessage(pageResponse, "success");
+        }
         }
         return responseService.prepareFailedResponseWithMessage("",ApplicationConstants.FAILED);
     }
