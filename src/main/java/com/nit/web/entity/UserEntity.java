@@ -1,8 +1,7 @@
 package com.nit.web.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 @Entity
 @Table(name ="user_master")
 public class UserEntity extends BaseEntity {
@@ -25,100 +24,88 @@ public class UserEntity extends BaseEntity {
 	private Long roleId;
 	@Column(name="designation")
 	private String designation;
-	@Column(name="address")
-	private String address;
-	@Column(name="state")
-	private String state;
-	@Column(name="district")
-	private String district;
-	@Column(name="pincode")
-	private Long pincode;
-	@Column(name="phone")
-	private Long phone;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id", referencedColumnName = "id")
+	private  AddressEntity address;
+
 	public String getFirstName() {
 		return firstName;
 	}
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+
 	public String getLastName() {
 		return lastName;
 	}
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
 	public String getUserEmail() {
 		return userEmail;
 	}
+
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
+
 	public String getUserName() {
 		return userName;
 	}
+
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
 	public String getUserPass() {
 		return userPass;
 	}
+
 	public void setUserPass(String userPass) {
 		this.userPass = userPass;
 	}
+
 	public Long getClientId() {
 		return clientId;
 	}
+
 	public void setClientId(Long clientId) {
 		this.clientId = clientId;
 	}
+
 	public Long getBranchId() {
 		return branchId;
 	}
+
 	public void setBranchId(Long branchId) {
 		this.branchId = branchId;
 	}
+
 	public Long getRoleId() {
 		return roleId;
 	}
+
 	public void setRoleId(Long roleId) {
 		this.roleId = roleId;
 	}
+
 	public String getDesignation() {
 		return designation;
 	}
+
 	public void setDesignation(String designation) {
 		this.designation = designation;
 	}
-	public String getAddress() {
+
+	public AddressEntity getAddress() {
 		return address;
 	}
-	public void setAddress(String address) {
+
+	public void setAddress(AddressEntity address) {
 		this.address = address;
 	}
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
-	}
-	public String getDistrict() {
-		return district;
-	}
-	public void setDistrict(String district) {
-		this.district = district;
-	}
-	public Long getPincode() {
-		return pincode;
-	}
-	public void setPincode(Long pincode) {
-		this.pincode = pincode;
-	}
-	public Long getPhone() {
-		return phone;
-	}
-	public void setPhone(Long phone) {
-		this.phone = phone;
-	}
-	
-
 }

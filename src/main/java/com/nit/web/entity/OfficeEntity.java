@@ -16,12 +16,14 @@ public class OfficeEntity extends BaseEntity {
 	private String isDealer;
 	@Column(name = "is_billing")
 	private String isBilling;
-	@Column(name = "address")
-	private String address;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "bank_id", referencedColumnName = "id")
 	private  BankInfoEntity bankInfo;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id", referencedColumnName = "id")
+	private  AddressEntity address;
 
 	public String getName() {
 		return name;
@@ -63,19 +65,19 @@ public class OfficeEntity extends BaseEntity {
 		this.isBilling = isBilling;
 	}
 
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
 	public BankInfoEntity getBankInfo() {
 		return bankInfo;
 	}
 
 	public void setBankInfo(BankInfoEntity bankInfo) {
 		this.bankInfo = bankInfo;
+	}
+
+	public AddressEntity getAddress() {
+		return address;
+	}
+
+	public void setAddress(AddressEntity address) {
+		this.address = address;
 	}
 }

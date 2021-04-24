@@ -1,8 +1,6 @@
 package com.nit.web.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "client")
@@ -16,8 +14,13 @@ public class ClientEntity extends BaseEntity {
 	private String code;
 	@Column(name = "auto_approve")
 	private String autoApprove;
-	@Column(name = "address")
-	private String address;
+
+	@Column(name = "regional_office")
+	private boolean regionalOffices;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id", referencedColumnName = "id")
+	private  AddressEntity address;
 
 	public String getName() {
 		return name;
@@ -51,11 +54,19 @@ public class ClientEntity extends BaseEntity {
 		this.autoApprove = autoApprove;
 	}
 
-	public String getAddress() {
+	public boolean getRegionalOffices() {
+		return regionalOffices;
+	}
+
+	public void setRegionalOffices(boolean regionalOffices) {
+		this.regionalOffices = regionalOffices;
+	}
+
+	public AddressEntity getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(AddressEntity address) {
 		this.address = address;
 	}
 }

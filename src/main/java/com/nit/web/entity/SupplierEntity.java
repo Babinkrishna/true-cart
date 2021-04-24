@@ -1,8 +1,6 @@
 package com.nit.web.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
@@ -15,14 +13,19 @@ public class SupplierEntity extends BaseEntity {
 	private String gstNumber;
 	@Column(name = "code")
 	private String code;
+
+	@Column(name = "email")
+	private String email;
+
 	@Column(name = "website")
 	private String website;
 	@Column(name = "contact_person")
 	private String contactPerson;
 	@Column(name = "opening_balance")
 	private BigDecimal openingBalance;
-	@Column(name = "address")
-	private String address;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id", referencedColumnName = "id")
+	private  AddressEntity address;
 
 	public String getName() {
 		return name;
@@ -56,6 +59,14 @@ public class SupplierEntity extends BaseEntity {
 		this.website = website;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getContactPerson() {
 		return contactPerson;
 	}
@@ -72,11 +83,11 @@ public class SupplierEntity extends BaseEntity {
 		this.openingBalance = openingBalance;
 	}
 
-	public String getAddress() {
+	public AddressEntity getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(AddressEntity address) {
 		this.address = address;
 	}
 }

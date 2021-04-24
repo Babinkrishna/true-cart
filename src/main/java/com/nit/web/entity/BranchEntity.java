@@ -1,9 +1,6 @@
 package com.nit.web.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Lob;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
@@ -26,8 +23,10 @@ public class BranchEntity extends BaseEntity {
 	private Integer orderFrequency;
 	@Column(name = "order_limit")
 	private Integer orderLimit;
-	@Column(name = "address")
-	private String address;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id", referencedColumnName = "id")
+	private  AddressEntity address;
 
 	public String getName() {
 		return name;
@@ -93,11 +92,11 @@ public class BranchEntity extends BaseEntity {
 		this.orderLimit = orderLimit;
 	}
 
-	public String getAddress() {
+	public AddressEntity getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(AddressEntity address) {
 		this.address = address;
 	}
 }
